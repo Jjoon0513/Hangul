@@ -12,7 +12,6 @@ class Hangul:
         self.jungsung = decomposed[1]
         self.jongsung = decomposed[2]
 
-
     def ischosung(self, chosung: str):
         return self.chosung == chosung
 
@@ -26,8 +25,6 @@ class Hangul:
         return self.__koreanchar
 
 
-
-
 def hangul_decompose(char):
     """
     한글 한 문자를 초성, 중성, 종성으로 분리합니다.
@@ -35,7 +32,6 @@ def hangul_decompose(char):
     # 한글 유니코드 범위
     start = 0xAC00  # '가'
     end = 0xD7A3  # '힣'
-
     chosung = [
         "ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ",
         "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
@@ -51,8 +47,6 @@ def hangul_decompose(char):
         "ㅁ", "ㅂ", "ㅄ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅊ",
         "ㅋ", "ㅌ", "ㅍ", "ㅎ"
     ]
-
-    # 문자가 한글인지 확인
     try:
         code = ord(char)
     except:
@@ -67,12 +61,14 @@ def hangul_decompose(char):
 
     return chosung[cho_idx], jungsung[jung_idx], jongsung[jong_idx]
 
+
 class IsNotHangul(Exception):
     """
     완성된 한글(1자)가 아닐때 또는 한글이 아닐때 이 메시지가 표시됩니다
     """
     def __init__(self, char):
         super().__init__(f"{char} is not a complete 1 character or it is not Hangul")
+
 
 class IsNotCharOfHangul(Exception):
     def __init__(self):

@@ -22,7 +22,6 @@ class HangulSentence:
     def perfectmatch(self, text: str) -> bool:
         return text == self.word
 
-
     def perfectchosungmatch(self, chosung: str) -> bool:
         """
         입력된 초성 문자열이 주어진 문장 초성과 완전히 일치하는지 확인.
@@ -34,9 +33,6 @@ class HangulSentence:
         입력된 초성 문자열이 주어진 문장 초성과 완전히 일치하는지 확인.
         """
         return ''.join(list(chosung)) in ''.join(self.chosung)
-
-
-
 
     def returnhangul(self):
         return [char.dic() for char in self.wordchars]
@@ -79,10 +75,8 @@ class HangulSentence:
 
         if josa in ["-이", "-와", "-을", "-은", "-다"]:
             try:
-                # 마지막 문자 가져오기
                 last_char = self.wordchars[-1]
 
-                # 문자열 변환 (Hangul 객체가 아닐 경우 대비)
                 last_char_str = str(last_char) if isinstance(last_char, Hangul) else last_char
 
                 if not isinstance(last_char, Hangul) and last_char_str in hasjongsunginkor:
@@ -132,8 +126,6 @@ class HangulSentence:
                         self.wordchars.append(Hangul("이"))
                         self.wordchars.append(Hangul("다"))
             except Exception as e:
-                # 디버깅을 위해 예외 메시지 추가
-                print(f"Error processing josa '{josa}' with last_char '{last_char}': {e}")
                 raise LastCharactorError from e
         else:
             raise UndefinedJosa(josa)
